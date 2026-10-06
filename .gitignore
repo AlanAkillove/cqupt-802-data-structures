@@ -1,0 +1,19 @@
+# 临时工具脚本与中间产物（非交付物）
+tmp/
+
+# 抓取缓存
+*.cache.json
+*.tmp
+
+# 操作系统杂项
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# Office 临时锁文件
+~$*
