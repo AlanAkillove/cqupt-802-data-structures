@@ -1,17 +1,19 @@
-# 802 数据结构 · 真题统计报告（Phase 8）
+# 802 数据结构 · 真题统计报告
 
+> 本报告由 `scripts/build_statistics.py` 从 `metadata/questions.jsonl` 生成，请勿手改数字。
+>
 > **统计口径**
-> - 数据源：`metadata/questions.jsonl`，全集 661 题（2005–2026 共 18 年）。
-> - **本报告所有分布均排除 2 道 `reconstructed` 题**（DS-2025-14、DS-2026-15，均为人为构造的堆调整题、非真实考场题面），统计基数 = **659**。
-> - **题型（选择/填空/算法设计等）与分值官方从未公布**，各年份真题回忆卷亦无可靠分值标注，故本报告**不做按题型、按分值的统计**；解析文件 front matter 中 `question_type` / `score` 一律为 `null`。
-> - `primary_topic` 每题恰好一个；`skills` 可多选，故各技能计数之和 > 题目数。
-> - 生成脚本：`tmp/p8_stats2.py`（基数 659）；章节全集口径见 `tmp/p8_stats.py`。
+> - 数据源全集 661 题（2005–2007、2012–2026 共 18 年）。
+> - **频率类分布（章节、年份、能力标签、难度、解析状态、OCR）一律排除 2 道 `reconstructed` 题**（DS-2025-14、DS-2026-15，人为构造/替代题，非真实考场题面），基数 = **659**。
+> - **人工审阅状态**一节反映全部 661 条元数据的真实完整性，不排除 reconstructed。
+> - 题型与分值官方从未公布，故**不做按题型 / 按分值的统计**；`question_type`、`score` 恒为 `null`。
+> - `primary_topic` 每题唯一；`skills` 可多选，各技能之和大于题目数。
 
-## 1. 按章分布（DS00–DS06）
+## 1. 按章分布（DS00–DS06，排除 reconstructed）
 
 | 章 | 名称 | 题数 | 占比 |
 |---|---|---|---|
-| DS00 | 绪论（扩展章） | 33 | 5.0% |
+| DS00 | 绪论（基础知识章） | 33 | 5.0% |
 | DS01 | 线性表 | 69 | 10.5% |
 | DS02 | 栈、队列、数组和广义表 | 124 | 18.8% |
 | DS03 | 树与二叉树 | 139 | 21.1% |
@@ -20,9 +22,9 @@
 | DS06 | 排序 | 71 | 10.8% |
 | **合计** | | **659** | 100% |
 
-> DS06 排除 reconstructed 后为 71（含 reconstructed 全集口径为 73）。
+> DS06 含 reconstructed 的全集口径为 73（DS06.07 上另有 2 道构造题）。
 
-## 2. 年份 × 章 矩阵（基数 659，含行合计）
+## 2. 年份 × 章 矩阵（排除 reconstructed）
 
 | 年份 | DS00 | DS01 | DS02 | DS03 | DS04 | DS05 | DS06 | 合计 |
 |---|---|---|---|---|---|---|---|---|
@@ -44,29 +46,27 @@
 | 2024 | 1 | 2 | 4 | 8 | 3 | 4 | 1 | 23 |
 | 2025 | 2 | 3 | 6 | 5 | 3 | 3 | 0 | 22 |
 | 2026 | 0 | 3 | 7 | 4 | 5 | 5 | 1 | 25 |
-| **合计** | **33** | **69** | **124** | **139** | **114** | **109** | **71** | **659** |
+| **合计** | 33 | 69 | 124 | 139 | 114 | 109 | 71 | **659** |
 
-> 年份不连续（缺 2008–2011）系回忆版真题可得范围所限，详见 `reports/source_inventory.md`。
+> 缺 2008–2011：该四年未获得可靠来源，不做推测性补全（见 `reports/source_inventory.md`）。
 
-## 3. 按能力标签（skills，可多选）
+## 3. 按能力标签（skills，可多选，排除 reconstructed）
 
 | 能力标签 | 题数 |
 |---|---|
-| CONCEPT（概念辨识） | 379 |
-| CALCULATION（计算求值） | 346 |
-| TRACE（过程推演/模拟） | 210 |
-| CONSTRUCTION（结构构造） | 150 |
-| COMPLEXITY_ANALYSIS（复杂度分析） | 88 |
-| COMPARISON（对比辨析） | 78 |
-| ALGORITHM_IMPLEMENTATION（算法实现） | 41 |
-| ALGORITHM_DESIGN（算法设计） | 39 |
-| CODE_READING（程序阅读） | 20 |
-| CODE_COMPLETION（程序填空） | 15 |
-| APPLICATION（综合应用） | 13 |
+| CONCEPT | 379 |
+| CALCULATION | 346 |
+| TRACE | 210 |
+| CONSTRUCTION | 150 |
+| COMPLEXITY_ANALYSIS | 88 |
+| COMPARISON | 78 |
+| ALGORITHM_IMPLEMENTATION | 41 |
+| ALGORITHM_DESIGN | 39 |
+| CODE_READING | 20 |
+| CODE_COMPLETION | 15 |
+| APPLICATION | 13 |
 
-> 计数之和 = 1579 > 659，因每题 `skills` 允许 1–3 个标签。
-
-## 4. 按难度（difficulty，解析自评）
+## 4. 按难度（difficulty，解析自评，排除 reconstructed）
 
 | 难度 | 题数 | 占比 |
 |---|---|---|
@@ -75,23 +75,24 @@
 | hard | 21 | 3.2% |
 | **合计** | **659** | 100% |
 
-> 难度为解析时按认知负荷给出的自评档位，非官方分级；`difficulty_confidence` 逐题记录于 jsonl。
+> 难度为解析时按认知负荷给出的自评档位，非官方分级。
 
-## 5. 按解析状态（solution_status）
+## 5. 按解析状态（solution_status，排除 reconstructed）
 
-| 状态 | 题数 | 说明 |
+> `solution_status` 描述**解析自身的证据/推导强度**，与“是否已由人工审阅”无关（后者见第 7 节）。
+
+| 状态 | 题数 | 含义 |
 |---|---|---|
-| verified | 627 | 答案经多来源或独立推导确认 |
-| derived | 14 | 来源缺失/存疑，由解析独立推导得出 |
-| disputed | 5 | 答案存在多解/来源矛盾，已在登记表声明 |
-| uncertain | 11 | 题面有缺陷，在声明口径下作答 |
-| unsolvable | 2 | 题面信息不足，无法作答（DS-2007-31、DS-2016-38） |
+| verified | 627 | 答案经至少两种独立证据技术交叉验证（非人工审定） |
+| derived | 14 | 仅独立推导，未二次验证 |
+| disputed | 5 | 多来源冲突或题面歧义未决 |
+| uncertain | 11 | 题面缺陷，声明口径后作答 |
+| unsolvable | 2 | 题面信息不足，无法作答 |
 | **合计** | **659** | |
 
-> disputed / unsolvable / uncertain 逐题登记于 `reports/disputed_questions.md`，与 front matter 一一对应（P7 QA 校验通过）。登记表 uncertain 类目另含 4 题在解析文件 §12 声明缺陷后保留 `verified`，故登记簿口径与 front matter 状态计数存在此差异，属预期设计。
-> 全集 661 口径下 `derived` 为 16（含 2 道 reconstructed）。
+> disputed / uncertain / unsolvable 逐题登记于 `reports/disputed_questions.md`，与 front matter 一一对应。
 
-## 6. 按 OCR 可信度（ocr_confidence）
+## 6. 按题面转录可信度（ocr_confidence，排除 reconstructed）
 
 | 可信度 | 题数 |
 |---|---|
@@ -100,4 +101,10 @@
 | low | 4 |
 | **合计** | **659** |
 
-> OCR 可信度反映题面转录质量；`low` 题解析时已交叉核对原图（`imgs/`）并在 §12 注明来源。
+## 7. AI 生成与人工审阅状态（全 661 条元数据）
+
+- **AI 生成**：`ai_generated = true` 的题目 **661 / 661**（当前解析主要由 AI 依据题面、考纲、指定教材与参考资料生成并结构化整理，非人工从零撰写）。
+- **人工审阅状态**：pending 661 / reviewing 0 / reviewed 0 / needs_revision 0。
+- **人工审阅轮次**：全部 661 题为 0 轮（`human_review_rounds = 0`）。
+
+> **重要**：`solution_status: verified` 只表示 AI 推导经过了技术层面的交叉验证，**不等于**维护者已人工逐题审定。当前人工复核尚未系统展开，故所有题目 `human_review_status` 统一为 `pending`。审阅流程见 `docs/review_protocol.md`。
