@@ -4,13 +4,19 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to
 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 Scope:
-- The curated exam-question text, transcriptions, annotations, solutions and
-  metadata in this repository are covered by this license.
-- Original exam papers (真题原卷) are the property of Chongqing University of
-  Posts and Telecommunications (CUPT) and are reproduced here for personal
-  study and research purposes only.
-- Third-party source materials (Zhihu articles) remain copyright their
-  respective authors; attribution URLs are recorded in
+- This license covers ONLY the material originally created and contributed by
+  this repository's maintainer, to the extent allowed by applicable law and by
+  the rights of third parties. This includes: the solutions that were generated
+  with AI assistance and then curated, revised and structured by this project;
+  the knowledge taxonomy; the metadata; the statistical reports; the project
+  code; and the structured annotations.
+- Third-party content is NOT re-licensed by this repository and remains the
+  property of its respective rights holders. This includes: Chongqing University
+  of Posts and Telecommunications (CUPT) official exam documents and original
+  exam papers (真题原卷); the recalled/transcribed question texts circulated
+  online (回忆版题面); third-party images; and third-party reference solutions.
+- Nothing in this license changes the pre-existing copyright status of any
+  third-party content. Attribution URLs are recorded in
   reports/source_inventory.md and in each file's source metadata.
 
 You are free to:
